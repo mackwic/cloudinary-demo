@@ -1,0 +1,33 @@
+<div class="hero-unit" ng-controller="ViewCtrl">
+
+    <h3>Wiewing existing images</h3>
+    <input ng-model="cloudName" type="text" placeholder="Your cloud name here"/>
+    <hr />
+    <p><em>Note: authentification is requiered for this action, please give your credentials. Be assured that nothing is send to the mothership</em></p>
+    <input ng-model="apiKey" type="text" placeholder="Your API Key">
+    <input ng-model="apiSecret" type="text" placeholder="Your API secret">
+    <input class="btn btn-inverse btn-large" type="submit" value="Retreive Images">
+    <br />
+    <select ng-model="maxImg" name="max">
+        <option selected value="10">Display max 10 images</option>
+        <option value="20">Display max 20 images</option>
+        <option value="50">Display max 50 images</option>
+        <option value="100">Display max 100 images</option>
+    </select>
+    <hr />
+
+    <div ng-show="error" class="alert alert-error">
+        <p>Erreur : {{error}}</p>
+    </div>
+    <div ng-hide="images.length > 0" class="alert alert-info">
+        <p class="text-right">Images will be displayed here</p>
+    </div>
+    <ul ng-show="images.length > 0">
+        <li ng-repeat="image in images">
+            <img class="img-polaroid" src="{{image}}" />
+        </li>
+    </ul>
+
+    
+
+</div>

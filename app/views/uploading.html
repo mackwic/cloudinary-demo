@@ -1,0 +1,14 @@
+
+<div class="hero-unit" ng-controller="UploadCtrl">
+    <h3>Uploading new images</h3>
+
+    <input ng-model="cloudName" type="text" placeholder="Your cloud name here"/>
+    <hr />
+    <input id="input" ng-model="files" name="files" type="file" multiple="multiple" accept="image" />
+
+    <div ng-show="hasFiles()">
+        <p class="info">[<span ng-repeat="file in files">{{file}}, </span>] are ready to send !</p>
+        <input type="submit" text="{{submitMsg}}" />
+</div>
+
+</div>
