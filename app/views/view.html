@@ -1,18 +1,26 @@
 <div class="hero-unit" ng-controller="ViewCtrl">
 
     <h3>Wiewing existing images</h3>
-    <input ng-model="cloudName" type="text" placeholder="Your cloud name here"/>
+    <input ng-model="cloudName" required type="text" placeholder="Your cloud name here"/>
+    <input ng-model="imageName" type="text" placeholder="(Optional) I know what I want"/>
     <hr />
-    <p><em>Note: authentification is requiered for this action, please give your credentials. Be assured that nothing is send to the mothership</em></p>
-    <input ng-model="apiKey" type="text" placeholder="Your API Key">
-    <input ng-model="apiSecret" type="text" placeholder="Your API secret">
-    <input class="btn btn-inverse btn-large" type="submit" value="Retreive Images">
+    <p><em>Note: authentification is requiered <strong>if you don't know which image you want</strong>. Be assured that nothing is send to the mothership</em></p>
+    <input ng-model="apiKey" required type="text" placeholder="Your API Key">
+    <input ng-model="apiSecret" required type="text" placeholder="Your API secret">
+    <input ng-click="getImages()" class="btn btn-inverse btn-large" type="submit" value="Retreive Images">
     <br />
     <select ng-model="maxImg" name="max">
         <option selected value="10">Display max 10 images</option>
         <option value="20">Display max 20 images</option>
         <option value="50">Display max 50 images</option>
         <option value="100">Display max 100 images</option>
+    </select>
+    <select ng-model="size" name="size">
+        <option selected value="default">Original Size</option>
+        <option value="100x100">100x100</option>
+        <option value="150x150">150x150</option>
+        <option value="300x300">300x300</option>
+        <option value="500x500">500x500</option>
     </select>
     <hr />
 
@@ -22,9 +30,14 @@
     <div ng-hide="images.length > 0" class="alert alert-info">
         <p class="text-right">Images will be displayed here</p>
     </div>
-    <ul ng-show="images.length > 0">
-        <li ng-repeat="image in images">
-            <img class="img-polaroid" src="{{image}}" />
+    <ul ng-show="images.length > 0" class="thumbnails">
+        <li ng-repeat="image in images" class="span4">
+        <div class="thumnail">
+            <img class="img-polaroid" src="{{image.src}}" data-src="{{image.src}}" /><br />
+                <input type="text" value="{{image.width}}" placeholder="width" style="width:3em"/>
+                <input type="text" value="{{image.height}}" placeholder="height" style="width:3em"/>
+                <button ng-click="reload(image)" class="btn btn-inverse btn-small">Reload</button>
+        </div>
         </li>
     </ul>
 

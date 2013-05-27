@@ -4,9 +4,12 @@
 
     <input ng-model="cloudName" type="text" placeholder="Your cloud name here"/>
     <hr />
-    <input id="input" ng-model="files" name="files" type="file" multiple="multiple" accept="image" />
+    <input ng-model-instant onchange="angular.element(this).scope.files(this)" type="file" accept="image" />
+    <input type="submit" />
 
-    <div ng-show="hasFiles()">
+    <p>{{files}}</p>
+
+    <div ng-show="files.length > 0">
         <p class="info">[<span ng-repeat="file in files">{{file}}, </span>] are ready to send !</p>
         <input type="submit" text="{{submitMsg}}" />
 </div>
