@@ -4,14 +4,15 @@
 
     <input ng-model="cloudName" type="text" placeholder="Your cloud name here"/>
     <hr />
-    <input ng-model-instant onchange="angular.element(this).scope.files(this)" type="file" accept="image" />
+    <input ng-model-instant onchange="UploadCtrl.setFiles(this)" type="file" accept="image" />
     <input type="submit" />
 
     <p>{{files}}</p>
 
+
     <div ng-show="files.length > 0">
         <p class="info">[<span ng-repeat="file in files">{{file}}, </span>] are ready to send !</p>
         <input type="submit" text="{{submitMsg}}" />
-</div>
+    </div>
 
 </div>

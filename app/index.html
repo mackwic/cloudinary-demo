@@ -27,6 +27,19 @@
     <!-- Add your site or application content here -->
     <div class="container" ng-view></div>
 
+    <div ng-controller="ExceptionCtrl" class="row-fluid">
+        <div class="offset1 span10" id="excp">
+        <p ng-show="exp.length == 0" class="alert alert-success">All is bright ! No error to report.</p>
+        <div ng-show="exp.length > 0" class="alter alert-error">
+            <p> I have some errors to report !</p>
+            <ul>
+                <li ng-repeat="e in exp">{{e}}</li>
+            </ul>
+
+        </div>
+        </div>
+    </div>
+
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
